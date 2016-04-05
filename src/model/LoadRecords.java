@@ -33,7 +33,7 @@ public class LoadRecords {
                 date = LocalDate.parse(data[0], DTF);
                 if (!data[1].contentEquals(".")) {
                     value = Double.parseDouble(data[1]);
-                    map.put(date, new StockRecord(value));
+                    map.put(date, new StockRecord(date, value));
                 }
             }
 
