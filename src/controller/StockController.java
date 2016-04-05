@@ -3,6 +3,7 @@ package controller;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Map;
 import model.*;
 
 /**
@@ -25,8 +26,7 @@ public class StockController {
     
     public ArrayList<StockRecord> getSortedArrayList() {
         ArrayList<StockRecord> list = new ArrayList();
-        LocalDate end;
-        
+                
         return list;
     }
 }

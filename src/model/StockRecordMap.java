@@ -228,7 +228,7 @@ public class StockRecordMap<K, V> extends Observable implements IStockMap {
             put(entry.getKey(), entry.getValue());
         }
     }
-
+    
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("[");
