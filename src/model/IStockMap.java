@@ -25,7 +25,7 @@ public interface IStockMap<K, V> {
     
     public void remove(K key);
     
-    public int getSize();
+    public int size();
     
     public java.util.Set<V> values();
     

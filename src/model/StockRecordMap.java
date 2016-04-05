@@ -172,7 +172,7 @@ public class StockRecordMap<K, V> extends Observable implements IStockMap {
     }
 
     @Override
-    public int getSize() {
+    public int size() {
         return size;
     }
 

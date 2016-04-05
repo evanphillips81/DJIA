@@ -35,6 +35,6 @@ public class StockRecord {
     
     @Override
     public String toString() {
-        return ("Value: " + value);
+        return ("Date: " + date + "Value: " + value);
     }
 }

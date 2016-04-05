@@ -32,13 +32,17 @@ public class MainWindowFacade {
     
     public MainWindowFacade(Stage stage) {
         controller = new StockController();
+        controller.sort();
         showMainScene(stage);
     }
 
     private VBox getTopPane() {
         topPane = new VBox();
         StockLineChart chart = new StockLineChart();
-        chart.setChartValues(controller.getMap());
+        StockListView listView = new StockListView();
+        chart.setChartValues(controller.sort());
+        listView.setListView(controller.sort());
+        topPane.getChildren().addAll(chart.getLineChart(), listView.getListView());
 
         return topPane;
     }
