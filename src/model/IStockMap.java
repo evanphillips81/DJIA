@@ -1,5 +1,5 @@
 
-package dowJonesHistory;
+package model;
 
 /**
  *

@@ -1,13 +1,14 @@
-package dowJonesHistory;
+package model;
 
 import java.util.LinkedList;
+import java.util.Observable;
 import java.util.Set;
 
 /**
  *
  * @author Evan Phillips
  */
-public class StockRecordMap<K, V> implements IStockMap {
+public class StockRecordMap<K, V> extends Observable implements IStockMap {
 
     private static final int DEFAULT_INITIAL_CAPACITY = 8192;
     private static final int MAXIMUM_CAPACITY = 1 << 15;
