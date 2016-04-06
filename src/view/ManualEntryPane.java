@@ -30,7 +30,7 @@ public class ManualEntryPane {
         valueTf = new TextField();
         submitBtn = new Button("Submit");
         valueTf.setPromptText("Enter the value");
-        date.setConverter(MainWindowFacade.getConverter());
+        date.setConverter(Converter.getConverter());
         pane.getChildren().addAll(date, valueLbl, valueTf, submitBtn);
         pane.setAlignment(Pos.CENTER);
     }

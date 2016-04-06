@@ -26,12 +26,13 @@ public class StockLineChart implements Observer {
         xAxis = new CategoryAxis();
         yAxis = new NumberAxis();
         xAxis.setLabel("Date");
-        yAxis.setLabel("Dollar Value");
+        yAxis.setLabel("Value");
         lineChart = new LineChart(xAxis,yAxis);    
         lineChart.setTitle("Dow Jones Industrial Average");
         series = new XYChart.Series();
         series.setName("DJIA");
-        lineChart.getData().add(series); 
+        lineChart.getData().add(series);
+        lineChart.setCreateSymbols(false);
     }
     
     public LineChart<String,Number> getLineChart() {

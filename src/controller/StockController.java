@@ -2,6 +2,7 @@
 package controller;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -16,6 +17,7 @@ public class StockController {
     
     private StockRecordMap map;
     private LoadRecords load;
+    private ArrayList<StockRecord> list;
     
     public StockController() {
         load = new LoadRecords("lib/djia.csv");
@@ -28,14 +30,22 @@ public class StockController {
     }
     
     public ArrayList<StockRecord> sort() {
-        ArrayList<StockRecord> list = new ArrayList();
-        LocalDate start;
-        LocalDate finish;
+        list = new ArrayList();
         for (Object value : map.values()) {
             list.add((StockRecord)value);
         }
         
         Collections.sort(list, new DateComparator());
+        return list;
+    }
+    
+    public ArrayList<StockRecord> getDateRange(LocalDate start, LocalDate end) {
+        list = new ArrayList();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getDate().isAfter(start) && list.get(i).getDate().isBefore(end)) {
+                list.add(list.get(i));
+            }
+        }
         return list;
     }
     
