@@ -38,4 +38,17 @@ public class ManualEntryPane {
     public HBox getPane() {
         return pane;
     }
+
+    public DatePicker getDate() {
+        return date;
+    }
+
+    public TextField getValueTf() {
+        return valueTf;
+    }
+
+    public Button getSubmitBtn() {
+        return submitBtn;
+    }
+    
 }

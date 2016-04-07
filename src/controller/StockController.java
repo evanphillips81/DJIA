@@ -1,4 +1,3 @@
-
 package controller;
 
 import java.time.LocalDate;
@@ -16,22 +15,28 @@ import model.*;
 public class StockController {
     
     private StockRecordMap map;
-    private LoadRecords load;
+    private LoadRecords records;
     private ArrayList<StockRecord> list;
     
     public StockController() {
-        load = new LoadRecords("lib/djia.csv");
-        map = load.getMap();
+        records = new LoadRecords("lib/djia.csv");
+        map = records.getMap();
+        list = getArrayList();
         
     }
-    
+        
     public StockRecordMap getMap() {
         return map;
     }
     
-    public ArrayList<StockRecord> sort() {
+    public void add(LocalDate date, double value) {
+        StockRecord newRecord = new StockRecord(date, value);
+        map.put(date, newRecord);
+    }
+    
+    public ArrayList<StockRecord> getArrayList() {
         list = new ArrayList();
-        for (Object value : map.values()) {
+        for (Object value: map.values()) {
             list.add((StockRecord)value);
         }
         
@@ -40,13 +45,13 @@ public class StockController {
     }
     
     public ArrayList<StockRecord> getDateRange(LocalDate start, LocalDate end) {
-        list = new ArrayList();
+        ArrayList<StockRecord> datedList = new ArrayList();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getDate().isAfter(start) && list.get(i).getDate().isBefore(end)) {
-                list.add(list.get(i));
+                datedList.add(list.get(i));
             }
         }
-        return list;
+        return datedList;
     }
     
     private class DateComparator implements Comparator<StockRecord> {

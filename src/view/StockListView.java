@@ -32,6 +32,10 @@ public class StockListView implements Observer {
     public ListView getListView() {
         return list;
     }
+    
+    public void clear() {
+        list.getItems().clear();
+    }
 
     @Override
     public void update(Observable o, Object o1) {

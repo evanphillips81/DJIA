@@ -50,4 +50,17 @@ public class DateRangePane {
         GPButtonEventObject ev = new 
             GPButtonEventObject(this,start ,end);
     }
+
+    public DatePicker getStartDate() {
+        return startDate;
+    }
+
+    public DatePicker getEndDate() {
+        return endDate;
+    }
+
+    public Button getBtn() {
+        return btn;
+    }
+    
 }

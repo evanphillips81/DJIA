@@ -8,13 +8,13 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import model.StockRecord;
+import model.*;
 
 /**
  *
  * @author Evan Phillips
  */
-public class StockLineChart implements Observer {
+public class StockLineChart implements IObserver {
 
     private CategoryAxis xAxis;
     private NumberAxis yAxis;
@@ -46,10 +46,14 @@ public class StockLineChart implements Observer {
                     list.get(i).getValue()));
         }
     }
+    
+    public void clear() {
+        lineChart.getData().removeAll();
+    }
 
     @Override
-    public void update(Observable o, Object o1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(ArrayList<StockRecord> newList) {
+        setChartValues(newList);
     }
 
 }

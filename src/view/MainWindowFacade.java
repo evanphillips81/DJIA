@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import model.StockRecord;
 
 /**
  *
@@ -29,16 +30,21 @@ public class MainWindowFacade {
     private VBox topPane;
     private VBox centerPane;
     private VBox bottomPane;
+    private StockLineChart chart;
+    private StockListView listView;
+    private DateRangePane datePane;
+    private ManualEntryPane entryPane;
 
     public MainWindowFacade(Stage stage) {
         controller = new StockController();
-        controller.sort();
+        controller.getArrayList();
+
         showMainScene(stage);
     }
 
     private VBox getTopPane() {
         topPane = new VBox();
-        DateRangePane datePane = new DateRangePane();
+        datePane = new DateRangePane();
         topPane.setPadding(new Insets(SP_SM, SP_SM, SP_SM, SP_SM));
         topPane.getChildren().addAll(datePane.getPane());
 
@@ -47,10 +53,8 @@ public class MainWindowFacade {
 
     private VBox getCenterPane() {
         centerPane = new VBox();
-        StockLineChart chart = new StockLineChart();
-        StockListView listView = new StockListView();
-        chart.setChartValues(controller.sort());
-        listView.setListView(controller.sort());
+        chart = new StockLineChart();
+        listView = new StockListView();
         centerPane.getChildren().addAll(chart.getLineChart(), listView.getListView());
 
         return centerPane;
@@ -58,7 +62,7 @@ public class MainWindowFacade {
 
     private VBox getBottomPane() {
         bottomPane = new VBox(SP_SM);
-        ManualEntryPane entryPane = new ManualEntryPane();
+        entryPane = new ManualEntryPane();
         bottomPane.setPadding(new Insets(SP_SM, SP_SM, SP_SM, SP_SM));
         bottomPane.getChildren().add(entryPane.getPane());
 
@@ -71,6 +75,7 @@ public class MainWindowFacade {
         layout.setTop(getTopPane());
         layout.setCenter(getCenterPane());
         layout.setBottom(getBottomPane());
+        actions();
 
         return layout;
     }
@@ -82,5 +87,39 @@ public class MainWindowFacade {
         stage.show();
     }
 
+    private void refreshNodes() {
+        chart.clear();
+        listView.clear();
+    }
     
+    private void dateButtonClicked() {
+        refreshNodes();
+        LocalDate start = datePane.getStartDate().getValue();
+        LocalDate end = datePane.getEndDate().getValue();
+        chart.setChartValues(controller.getDateRange(start, end));
+        listView.setListView(controller.getDateRange(start, end));
+    }
+    
+    private void submitButtonClicked() {
+        
+        try {
+            LocalDate date = entryPane.getDate().getValue();
+            double value = Double.parseDouble(entryPane.getValueTf().getText());
+            controller.add(date, value);
+        } catch (NumberFormatException e) {
+            
+        }
+        
+    }
+    
+    private void actions() {
+        datePane.getBtn().setOnAction(e -> {
+            dateButtonClicked();
+        });
+        
+        entryPane.getSubmitBtn().setOnAction(e -> {
+            submitButtonClicked();
+        });
+    }
+
 }

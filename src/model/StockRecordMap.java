@@ -8,7 +8,7 @@ import java.util.Set;
  *
  * @author Evan Phillips
  */
-public class StockRecordMap<K, V> extends Observable implements IStockMap {
+public class StockRecordMap<K, V> implements IStockMap, ISubject {
 
     private static final int DEFAULT_INITIAL_CAPACITY = 8192;
     private static final int MAXIMUM_CAPACITY = 1 << 15;
@@ -57,7 +57,7 @@ public class StockRecordMap<K, V> extends Observable implements IStockMap {
         for (int i = 0; i < capacity; i++) {
             if (table[i] != null) {
                 LinkedList<Entry<K, V>> bucket = table[i];
-                for (Entry<K, V> entry : bucket) {
+                for (Entry<K, V> entry: bucket) {
                     if (entry.getValue().equals(value)) {
                         return true;
                     }
@@ -76,7 +76,7 @@ public class StockRecordMap<K, V> extends Observable implements IStockMap {
         for (int i = 0; i < capacity; i++) {
             if (table[i] != null) {
                 LinkedList<Entry<K, V>> bucket = table[i];
-                for (Entry<K, V> entry : bucket) {
+                for (Entry<K, V> entry: bucket) {
                     set.add(entry);
                 }
             }
@@ -90,7 +90,7 @@ public class StockRecordMap<K, V> extends Observable implements IStockMap {
         int bucketIndex = hash(key.hashCode());
         if (table[bucketIndex] != null) {
             LinkedList<Entry<K, V>> bucket = table[bucketIndex];
-            for (Entry<K, V> entry : bucket) {
+            for (Entry<K, V> entry: bucket) {
                 if (entry.getKey().equals(key)) {
                     return entry.getValue();
                 }
@@ -112,7 +112,7 @@ public class StockRecordMap<K, V> extends Observable implements IStockMap {
         for (int i = 0; i < capacity; i++) {
             if (table[i] != null) {
                 LinkedList<Entry<K, V>> bucket = table[i];
-                for (Entry<K, V> entry : bucket) {
+                for (Entry<K, V> entry: bucket) {
                     set.add(entry.getKey());
                 }
             }
@@ -126,7 +126,7 @@ public class StockRecordMap<K, V> extends Observable implements IStockMap {
         if (get(key) != null) {
             int bucketIndex = hash(key.hashCode());
             LinkedList<Entry<K, V>> bucket = table[bucketIndex];
-            for (Entry<K, V> entry : bucket) {
+            for (Entry<K, V> entry: bucket) {
                 if (entry.getKey().equals(key)) {
                     V oldValue = entry.getValue();
                     entry.value = (V) value;
@@ -161,7 +161,7 @@ public class StockRecordMap<K, V> extends Observable implements IStockMap {
 
         if (table[bucketIndex] != null) {
             LinkedList<Entry<K, V>> bucket = table[bucketIndex];
-            for (Entry<K, V> entry : bucket) {
+            for (Entry<K, V> entry: bucket) {
                 if (entry.getKey().equals(key)) {
                     bucket.remove(entry);
                     size--;
@@ -183,7 +183,7 @@ public class StockRecordMap<K, V> extends Observable implements IStockMap {
         for (int i = 0; i < capacity; i++) {
             if (table[i] != null) {
                 LinkedList<Entry<K, V>> bucket = table[i];
-                for (Entry<K, V> entry : bucket) {
+                for (Entry<K, V> entry: bucket) {
                     set.add(entry.getValue());
                 }
             }
@@ -224,7 +224,7 @@ public class StockRecordMap<K, V> extends Observable implements IStockMap {
         table = new LinkedList[capacity];
         size = 0;
 
-        for (Entry<K, V> entry : set) {
+        for (Entry<K, V> entry: set) {
             put(entry.getKey(), entry.getValue());
         }
     }
@@ -235,7 +235,7 @@ public class StockRecordMap<K, V> extends Observable implements IStockMap {
 
         for (int i = 0; i < capacity; i++) {
             if (table[i] != null && table[i].size() > 0) {
-                for (Entry<K, V> entry : table[i]) {
+                for (Entry<K, V> entry: table[i]) {
                     builder.append(entry);
                 }
             }
@@ -245,4 +245,20 @@ public class StockRecordMap<K, V> extends Observable implements IStockMap {
 
         return builder.toString();
     }
+
+    @Override
+    public void register(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void unregister(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void notifyObservers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
