@@ -88,7 +88,7 @@ public class MainWindowFacade {
         stage.setTitle(TITLE);
         stage.getIcons().add(new Image("stocks.png"));
         stage.setScene(new Scene(getLayout(), W, H));
-        stage.getScene().getStylesheets().add("superCool.css");
+        stage.getScene().getStylesheets().add("softBlueCool.css");
         stage.show();
     }
 

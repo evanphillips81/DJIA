@@ -64,7 +64,7 @@ public class LaunchWizard extends Scene {
     
     private void show() {
         actions();
-        this.getStylesheets().add("superCool.css");
+        this.getStylesheets().add("softBlueCool.css");
         openBtn.setGraphic(new ImageView(new Image("/openPlain.png")));
         exitBtn.setGraphic(new ImageView(new Image("/exitPlain.png")));
         openBtn.setTooltip(new Tooltip("Open a file for historic data"));
