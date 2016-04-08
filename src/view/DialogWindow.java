@@ -41,6 +41,7 @@ public class DialogWindow extends Scene {
     }
 
     private void showDialog() {
+        this.getStylesheets().add("superCool.css");
         stage.setTitle(title);
         stage.setScene(this);
         stage.initModality(Modality.APPLICATION_MODAL);

@@ -18,7 +18,6 @@ public class StockFileChooser {
 
     public StockFileChooser() throws FileNotFoundException {
         makeNewObjects();
-        file = getFile();
     }
 
     private void makeNewObjects() {

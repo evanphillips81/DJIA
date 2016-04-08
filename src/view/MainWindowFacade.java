@@ -86,6 +86,7 @@ public class MainWindowFacade {
         this.file = file;
         stage.setTitle(TITLE);
         stage.setScene(new Scene(getLayout(), W, H));
+        stage.getScene().getStylesheets().add("superCool.css");
         stage.show();
     }
 

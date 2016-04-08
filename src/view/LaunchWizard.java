@@ -7,6 +7,9 @@ import java.util.logging.Logger;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -17,12 +20,12 @@ import javafx.stage.Stage;
  */
 public class LaunchWizard extends Scene {
     
-    static final double W = 300;
+    static final double W = 350;
     static final double H = 400;
     static final double SP = 35;
     private Stage stage;
     private VBox vb;
-    private Button loadBtn;
+    private Button openBtn;
     private Button exitBtn;
     private StockFileChooser fc;
     private MainWindowFacade mainWindowFacade;
@@ -37,12 +40,12 @@ public class LaunchWizard extends Scene {
     private void makeNewObjects() throws FileNotFoundException {
         vb = (VBox)getRoot();
         stage = new Stage();
-        loadBtn = new Button("Load CSV");
-        exitBtn = new Button("Exit app");       
+        openBtn = new Button();
+        exitBtn = new Button();       
     }
     
     private void actions() {
-        loadBtn.setOnAction(e -> {
+        openBtn.setOnAction(e -> {
             try {
                 fc = new StockFileChooser();
                 loadMainWindowFacade(stage);
@@ -58,11 +61,16 @@ public class LaunchWizard extends Scene {
     
     private void show() {
         actions();
+        this.getStylesheets().add("superCool.css");
+        openBtn.setGraphic(new ImageView(new Image("/openPlain.png")));
+        exitBtn.setGraphic(new ImageView(new Image("/exitPlain.png")));
+        openBtn.setTooltip(new Tooltip("Open a file for historic data"));
+        exitBtn.setTooltip(new Tooltip("Exit"));
         stage.setTitle("Welcome");
         stage.setScene(this);
         stage.initModality(Modality.APPLICATION_MODAL);
         vb.setAlignment(Pos.CENTER);
-        vb.getChildren().addAll(loadBtn, exitBtn);
+        vb.getChildren().addAll(openBtn, exitBtn);
         stage.show();
     }
     
