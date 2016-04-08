@@ -14,7 +14,6 @@ public class GPButtonEventObject extends EventObject{
     
     private LocalDate start;
     private LocalDate end;
-    private ArrayList<Object> list;
         
     public GPButtonEventObject(Object source) {
         super(source);
@@ -26,10 +25,15 @@ public class GPButtonEventObject extends EventObject{
         this.end = end;
         
     }
-    
-    public ArrayList<Object> getList() {
-        
-        
-        return list;
+
+    public LocalDate getStart() {
+        return start;
     }
+
+    public LocalDate getEnd() {
+        return end;
+    }
+    
+    
+    
 }

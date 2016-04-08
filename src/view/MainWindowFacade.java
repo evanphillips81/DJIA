@@ -1,6 +1,7 @@
 package view;
 
 import controller.StockController;
+import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javafx.geometry.Insets;
@@ -34,11 +35,11 @@ public class MainWindowFacade {
     private StockListView listView;
     private DateRangePane datePane;
     private ManualEntryPane entryPane;
+    private File file;
 
-    public MainWindowFacade(Stage stage) {
-        controller = new StockController();
+    public MainWindowFacade(Stage stage, File file) {
+        controller = new StockController(file);
         controller.getArrayList();
-
         showMainScene(stage);
     }
 
@@ -82,6 +83,7 @@ public class MainWindowFacade {
 
     private void showMainScene(Stage stage) {
         this.stage = stage;
+        this.file = file;
         stage.setTitle(TITLE);
         stage.setScene(new Scene(getLayout(), W, H));
         stage.show();
@@ -101,15 +103,18 @@ public class MainWindowFacade {
     }
     
     private void submitButtonClicked() {
+        LocalDate date = entryPane.getDate().getValue();
+        double value = 0;
         
         try {
-            LocalDate date = entryPane.getDate().getValue();
-            double value = Double.parseDouble(entryPane.getValueTf().getText());
-            controller.add(date, value);
+            value = Double.parseDouble(entryPane.getValueTf().getText());
         } catch (NumberFormatException e) {
-            
+            e.printStackTrace();
         }
         
+        controller.add(date, value);
+        entryPane.clear();  
+        new DialogWindow("Success", "The stock record was added");
     }
     
     private void actions() {

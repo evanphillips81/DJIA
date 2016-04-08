@@ -1,6 +1,7 @@
 package model;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -14,18 +15,18 @@ public class LoadRecords {
     static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private StockRecordMap<LocalDate, StockRecord> map;
 
-    public LoadRecords(String fileName) {
-        readFile(fileName);
+    public LoadRecords(File file) {
+        readFile(file);
     }
 
-    private void readFile(String fileName) {
+    private void readFile(File file) {
         try {
             String l;
             LocalDate date;
             double value;
 
             map = new StockRecordMap<>();
-            FileReader fr = new FileReader(fileName);
+            FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
 
             while ((l = br.readLine()) != null) {

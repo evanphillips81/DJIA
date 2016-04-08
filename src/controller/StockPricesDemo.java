@@ -3,6 +3,7 @@ package controller;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import view.LaunchWizard;
 import view.MainWindowFacade;
 
 /**
@@ -17,7 +18,7 @@ public class StockPricesDemo extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        MainWindowFacade window = new MainWindowFacade(stage);
+        LaunchWizard start = new LaunchWizard(stage);
     }
     
 }

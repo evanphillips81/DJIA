@@ -42,15 +42,6 @@ public class DateRangePane {
         return pane;
     }
     
-    
-    private void GPButtonClicked() {
-        LocalDate start = startDate.getValue();
-        LocalDate end = endDate.getValue();
-        
-        GPButtonEventObject ev = new 
-            GPButtonEventObject(this,start ,end);
-    }
-
     public DatePicker getStartDate() {
         return startDate;
     }
@@ -63,4 +54,7 @@ public class DateRangePane {
         return btn;
     }
     
+    public void clear() {
+        
+    }
 }

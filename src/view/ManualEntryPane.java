@@ -51,4 +51,8 @@ public class ManualEntryPane {
         return submitBtn;
     }
     
+    public void clear() {
+        valueTf.clear();
+        date.getEditor().clear();
+    }
 }

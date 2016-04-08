@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -17,9 +18,10 @@ public class StockController {
     private StockRecordMap map;
     private LoadRecords records;
     private ArrayList<StockRecord> list;
+    private File file;
     
-    public StockController() {
-        records = new LoadRecords("lib/djia.csv");
+    public StockController(File file) {
+        records = new LoadRecords(file);
         map = records.getMap();
         list = getArrayList();
         
