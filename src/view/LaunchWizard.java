@@ -17,6 +17,9 @@ import javafx.stage.Stage;
  */
 public class LaunchWizard extends Scene {
     
+    static final double W = 300;
+    static final double H = 400;
+    static final double SP = 35;
     private Stage stage;
     private VBox vb;
     private Button loadBtn;
@@ -25,7 +28,7 @@ public class LaunchWizard extends Scene {
     private MainWindowFacade mainWindowFacade;
     
     public LaunchWizard(Stage stage) throws FileNotFoundException {
-        super(new VBox(), 150, 300);
+        super(new VBox(SP), W, H);
         this.stage = stage;
         makeNewObjects();
         show();
