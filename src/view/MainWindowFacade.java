@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -85,6 +86,7 @@ public class MainWindowFacade {
         this.stage = stage;
         this.file = file;
         stage.setTitle(TITLE);
+        stage.getIcons().add(new Image("stocks.png"));
         stage.setScene(new Scene(getLayout(), W, H));
         stage.getScene().getStylesheets().add("superCool.css");
         stage.show();

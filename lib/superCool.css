@@ -35,3 +35,12 @@
     -fx-background-color: #AB4642;
     -fx-text-fill: #D8D8D8;
 }
+
+.chart-plot-background {
+    -fx-background-color: #e2ecfe;
+}
+
+.chart-legend {
+   -fx-background-color:  transparent;
+   -fx-padding: 20px;
+}

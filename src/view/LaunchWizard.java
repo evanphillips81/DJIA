@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,9 +21,11 @@ import javafx.stage.Stage;
  */
 public class LaunchWizard extends Scene {
     
-    static final double W = 350;
-    static final double H = 400;
-    static final double SP = 35;
+    static final double W = 400;
+    static final double H = 550;
+    static final double SP = 25;
+    static final Label info = new Label("Historical Stock Prices Verson 2.0 2016\n"
+            + "\t\t    By Evan Phillips");
     private Stage stage;
     private VBox vb;
     private Button openBtn;
@@ -68,9 +71,10 @@ public class LaunchWizard extends Scene {
         exitBtn.setTooltip(new Tooltip("Exit"));
         stage.setTitle("Welcome");
         stage.setScene(this);
+        stage.getIcons().add(new Image("stocks.png"));
         stage.initModality(Modality.APPLICATION_MODAL);
         vb.setAlignment(Pos.CENTER);
-        vb.getChildren().addAll(openBtn, exitBtn);
+        vb.getChildren().addAll(new Label("Open"),openBtn, new Label("Exit"), exitBtn, info);
         stage.show();
     }
     

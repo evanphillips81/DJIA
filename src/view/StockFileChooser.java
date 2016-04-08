@@ -26,9 +26,9 @@ public class StockFileChooser {
     }
 
     public File getFile() throws FileNotFoundException {
-        fc.setTitle("Choose a .CSV to parse for data");
+        fc.setTitle("Choose a file");
         fc.getExtensionFilters().add(
-                new ExtensionFilter(".CSV file", "*.csv"));
+                new ExtensionFilter("Comma-separated value file", "*.csv"));
         File selected = fc.showOpenDialog(stage);
         if (selected == null) {
             throw new FileNotFoundException();
